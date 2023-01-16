@@ -1,0 +1,27 @@
+-- EXAMPLE -- 
+
+-- ANY : 可以理解 为 任意的 意思  ， 使用 ANY 判断常常用AND 去<> 却要去掉自身（去除潜在的BUG）--
+-- 这是因为 这个人如果有两份数据 使用任意 往往就回把这个人标记上去 （其中必有一份数据比另一份数据大或者数据小）--
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT *
+FROM `courses`
+WHERE `student_count` > ANY (
+		SELECT `student_count`
+		FROM `courses`
+		WHERE `teacher_id` = (
+			SELECT `id`
+			FROM `teachers`
+			WHERE `name` = 'Eastern Heretic'
+		)
+	)
+	AND `teacher_id` <> (
+		SELECT `id`
+		FROM `teachers`
+		WHERE `name` = 'Eastern Heretic'
+	);
+  
+  
+ -- EXAMPLE -- 
+ 
+ 请编写 SQL 语句，对于 Southern Emperor 教师的所有课程，
+ 从 courses 表和 teachers 表中查询课程创建时间晚于其中任意一门课程创建时间的课程名称（不包含该教师的课程）。

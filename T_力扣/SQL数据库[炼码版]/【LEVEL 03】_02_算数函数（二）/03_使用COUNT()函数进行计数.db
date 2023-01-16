@@ -1,0 +1,34 @@
+-- COUNT(column_name) 函数会对指定列具有的行数进行计数，但是会除去值为 NULL 的行。该函数主要用于查看各列数据的数量情况，便于统计数据的缺失值。 --
+-- COUNT(column_name) 、COUNT( * ) 和 COUNT(DISTINCT column_name)  --
+-- 其中 AS 是给 COUNT(*) 取的别名 number_of_course --
+
+-- EXAMPLE 01 --
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT COUNT(*) AS `course_count` 
+FROM `courses` 
+WHERE `created_at` BETWEEN '2020-01-01' AND '2020-05-31';
+
+-- PRACTICE 01 --
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE--
+SELECT COUNT(DISTINCT teacher_id) AS teacher_count
+FROM `courses`;
+
+-- PRACTICE 02 --
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT COUNT(age) AS teacher_count
+FROM teachers
+WHERE (age >= 20) AND (age <= 28) 
+AND ((country ='UK' ) OR (country ='CN'));
+
+
+
+
+
+
+
+

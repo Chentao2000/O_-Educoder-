@@ -1,0 +1,14 @@
+-- 更新可以理解成 替换 ， 需要 UPDATE SET WHERE 联动 --
+-- EXAMPLE -- 
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+UPDATE `teachers`
+SET `email`='linghu.chong@lintcode.com'
+WHERE `name` = 'Linghu Chong';
+
+
+-- EXAMPLE --
+-- Write your SQL Query here --
+UPDATE `courses`
+SET `student_count` = '500'
+WHERE `name` = 'Artificial Intelligence';

@@ -1,0 +1,4 @@
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE --
+--* 代表全部的意思-- 
+SELECT * FROM `teachers`

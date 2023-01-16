@@ -1,0 +1,36 @@
+--- EXAMPLE 01 --
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果
+
+-- `查询最年长且国籍是美国的教师信息` --
+SELECT *
+FROM (
+  SELECT *
+  FROM `teachers`
+  WHERE `country` = 'USA'
+) `T`
+WHERE `age` = (
+  SELECT MAX(`age`)
+  FROM `teachers`
+);
+
+-- PRACTICE 01 -- 
+
+-- inner join teachers as ts on cs.teacher_id =ts.id -- 
+SELECT *
+FROM( 
+    SELECT my_s.name as course_name , student_count,my_t.name as teacher_name
+    FROM teachers as my_t
+    INNER JOIN courses as my_s 
+    ON my_t.id = my_s.teacher_id
+
+) `T`
+WHERE `student_count` = (
+    SELECT MAX(student_count)
+    FROM courses
+);
+
+
+
+
+

@@ -1,0 +1,21 @@
+-- example --  
+ 
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+
+SELECT `name`, `email`, ISNULL(`email`) AS isnull_email
+	, COALESCE(`email`, '0') AS ifnull_email
+	, COALESCE(`email`, 0) AS coalesce_email
+FROM `teachers`;
+
+-- IFNULL() 函数也用于判断字段是否为NULL，但是与 ISNULL() 不同的是它接收两个参数，第一个参数 column_name 为列名，第二个参数 value 相当于备用值。--
+-- COALESCE(column_name, value) 函数也用于判断字段是否为NULL，其用法和 IFNULL() 相同 --
+
+-- COALESCE coalesce 合并 --
+
+-- practice --  
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT * 
+FROM teachers
+WHERE ( age > 20) AND ISNULL(`email`);

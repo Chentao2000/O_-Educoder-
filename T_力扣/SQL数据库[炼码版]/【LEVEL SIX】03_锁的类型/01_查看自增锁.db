@@ -1,0 +1,2 @@
+-- Write your SQL here --
+show variables like 'innodb_autoinc_lock_mode%';

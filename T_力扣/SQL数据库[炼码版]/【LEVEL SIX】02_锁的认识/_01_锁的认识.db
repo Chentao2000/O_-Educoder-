@@ -1,0 +1,7 @@
+-- EXAMEPLE --
+-- Write your SQL here --
+-- 查看你当前使用的数据库是什么事务隔离级别 --
+SHOW VARIABLES like '%isolation%';
+
+
+-- PRACTICE -- 

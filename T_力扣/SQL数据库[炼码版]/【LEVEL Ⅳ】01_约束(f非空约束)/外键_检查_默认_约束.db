@@ -1,0 +1,145 @@
+
+-- 首先在学习外键约束之前我们先来认识一下什么是外键。一个表中的 FOREIGN KEY 指向另一个表中的 UNIQUE KEY  --
+-- 例子，如果一个字段 X 在一张表（表 1 ）中是关键字，而在另一张表（表 2 ）中不是关键字，则称字段 X 为表 2 的外键 --
+
+-- 外键最根本的作用：保证数据的完整性和一致 --
+-- CREATE TABLE 时的 SQL FOREIGN KEY 约束 --
+
+-- ************************************ 当表未被被创建 ************************************ --
+
+-- 在 "Orders" 表创建时在 "P_Id" 列上创建 FOREIGN KEY 约束：--
+
+CREATE TABLE `Orders`
+(
+`O_Id` int NOT NULL,
+`OrderNo` int NOT NULL,
+`P_Id` int,
+PRIMARY KEY (O_Id),
+FOREIGN KEY (P_Id) REFERENCES Persons(P_Id)
+)
+
+-- 如需命名 FOREIGN KEY 约束，并定义多个列的 FOREIGN KEY 约束: --
+
+CREATE TABLE `Orders`
+(
+`O_Id` int NOT NULL,
+`OrderNo` int NOT NULL,
+`P_Id` int,
+PRIMARY KEY (O_Id),
+CONSTRAINT fk_PerOrders FOREIGN KEY (P_Id)
+REFERENCES Persons(P_Id)
+)
+
+-- ************************************ 当表已经被创建 ************************************ --
+
+-- 当 "Orders" 表已被创建时，如需在 "P_Id" 列创建 FOREIGN KEY 约束: --
+
+ALTER TABLE `Orders`
+ADD FOREIGN KEY (P_Id)
+REFERENCES Persons(P_Id)
+
+-- 如需命名 FOREIGN KEY 约束，并定义多个列的 FOREIGN KEY 约束: --
+ALTER TABLE `Orders`
+ADD CONSTRAINT fk_PerOrders
+FOREIGN KEY (P_Id)
+REFERENCES Persons(P_Id)
+
+
+-- ************************************ 撤销FOREIGN KEY 约束 ************************************ --
+
+ALTER TABLE `Orders`
+DROP FOREIGN KEY fk_PerOrders
+
+-- ************************************ 检查 约束 ************************************ --
+--定义 CHECK 约束条件在某种程度上类似于编写查询的 WHERE 子句，使用不同的比较运算符（例如 AND、OR、BETWEEN、IN、LIKE 和 IS NULL）编写其布尔表达式 --
+-- 该布尔表达式将返回 TRUE、FALSE 或 UNKNOWN 。 当条件中存在 NULL 值时，CHECK约束将返回 UNKNOWN 值。--
+
+ -- CHECK 约束用于限制列中的值的范围，评估插入或修改后的值。满足条件的值将会插入表中，否则将放弃插入操作。 可以为同一列指定多个 CHECK 约束 --
+ 
+ -- ************************************ 创建表的 检查 约束 ************************************ --
+ --  2.1 创建表（CREATE TABLE）时添加 CHECK约束 --
+ 
+  -- 在创建课程表 courses 时，给学生总数 student_count 字段加上一个大于 0 的约束。 --
+ CREATE TABLE `courses`
+(
+`id` int,
+`name` varchar(255),
+`student_count` int,
+`created_at` date,
+`teacher_id` int,
+CHECK (`student_count` > 0)
+)
+
+
+-- 多个列添加 CHECK 约束  --
+
+CREATE TABLE `courses`
+(
+`id` int,
+`name` varchar(255),
+`student_count` int,
+`created_at` date,
+`teacher_id` int,
+CHECK (`student_count` > 0 AND `teacher_id` > 0)
+)
+
+-- 如果想为一个表中多个字段添加约束，直接在 CHECK 关键字后的括号内添加，两个约束间使用 AND 关键字连接。 --
+CREATE TABLE `courses`
+(
+`id` int,
+`name` varchar(255),
+`student_count` int,
+`created_at` date,
+`teacher_id` int,
+CONSTRAINT chk_courses CHECK (`student_count` > 0) ;
+
+ -- ************************************ 表已经存在的 检查 约束 ************************************ --
+ 
+ALTER TABLE `courses` 
+ADD CHECK ( `student_count` > 0);
+ 
+-- ************************************ 撤销 检查 约束 ************************************ --
+
+ALTER TABLE `courses` 
+DROP CHECK chk_courses
+
+
+-- ************************************ 默认约束 DEFAULT ************************************ --
+-- 默认值（Default）”的完整称呼是“默认值约束（Default Constraint）”。MySQL 默认值约束用来指定某列的默认值。--
+-- 例如女同学较多，性别就可以默认为“女”，如果插入一条新的记录时没有为这个字段赋值，那么系统会自动为这个字段赋值为“女”。 --
+
+-- 还没创建 --
+
+CREATE TABLE `Persons`
+(
+    `P_Id` int NOT NULL,
+    `LastName` varchar(255) NOT NULL,
+    `FirstName` varchar(255),
+    `Address` varchar(255),
+    `City` varchar(255) DEFAULT 'Sandnes'
+)
+
+
+-- 已经创建 --
+
+ALTER TABLE `Persons`
+ALTER `City` SET DEFAULT 'SANDNES'
+
+
+-- 撤销约束  --
+
+ALTER TABLE `Persons`
+ALTER `City` DROP DEFAULT
+
+-- 练习 01  --
+
+-- Write your SQL Query here --
+ALTER TABLE `courses`
+ADD FOREIGN KEY (teacher_id)
+REFERENCES teachers(id);
+
+
+ 
+ 
+
+

@@ -1,0 +1,19 @@
+#include <stdio.h>
+int main()
+{
+    int i = 0;
+    int n = 0;
+    int res = 1;
+    int sum = 0;
+    for(n=1; n<=10; n++)
+    {
+        res = 1;                //每次计算完一个阶乘后归1
+        for(i=1; i<=n; i++)
+        {
+            res = res * i;
+        }
+        sum = sum + res;       //把1~10的阶乘加起来
+    }
+    printf("%d\n", sum);
+    return 0;
+}

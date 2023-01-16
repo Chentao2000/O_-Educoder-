@@ -1,0 +1,16 @@
+-- EXAMPLE 1 --
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT *
+FROM teachers
+WHERE (age BETWEEN 20 AND 25) AND (country NOT IN ('CN','UK'));
+
+
+-- PRACTICE 1 --
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX BETWEEN XXX AND XXX -- ;
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX BETWEEN XXX AND XXX -- ;
+SELECT *
+FROM `courses`
+WHERE (student_count BETWEEN 50 AND 55 )

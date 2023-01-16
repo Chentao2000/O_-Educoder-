@@ -1,0 +1,40 @@
+-- EXAMPLE --
+
+-- Write your SQL here --
+create trigger t before update on recording for each row 
+begin
+    declare s int;
+    declare c int;
+    select count(*) into s from students where id = new.student_id;
+    -- 因为 S 是一个整数型，所以把索引出来的值当成一个数传入 
+    -- 而且 SELECT 只做索引用的 ，不规定 输出范围
+    -- 先判断数据在不在students，如果是的在的话，就插入到 s 中
+    select count(*) into c from companies where id = new.company_id;
+    -- 先判断数据在不在companies，如果是的在的话，就插入到 s 中
+    if s = 0 
+        then set new.student_id = old.student_id;
+    -- 如果没有插入的话的，那就用旧的值替换新的值，等于没更新 = 等于不更新
+    end if;
+    if c = 0
+        then set new.company_id = old.company_id;
+       -- 如果没有插入的话的，那就用旧的值替换新的值，等于没更新 = 等于不更新
+        
+    end if;
+end;
+
+
+-- Write your SQL here --
+CREATE TRIGGER before_courses_update
+	BEFORE UPDATE
+	ON courses
+	FOR EACH ROW
+--关于courses的teacher_id
+BEGIN
+--教师 id 在教师表中不存在
+    IF NEW.teacher_id not in(select id from teachers)
+--则不更新该条数据的教师 id
+    THEN SET NEW.teacher_id = OLD.teacher_id;
+    END IF;
+END
+
+-- PRACTICE --

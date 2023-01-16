@@ -1,0 +1,19 @@
+-- EXAMPLE --
+
+-- 读锁 --
+SELECT *
+FROM table_name
+LOCK IN SHARE MODE;
+
+-- 写锁 --
+SELECT *
+FROM table_name
+FOR UPDATE;
+
+-- practice 01 --
+-- 请给 teachers' 表中编号为 3 的一行数据上一个读锁 --
+-- Write your SQL here --
+SELECT *
+FROM teachers
+WHERE id = 3
+LOCK IN SHARE MODE ;

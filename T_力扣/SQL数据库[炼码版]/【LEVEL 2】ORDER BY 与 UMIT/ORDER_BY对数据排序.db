@@ -1,0 +1,41 @@
+-- ORDER BY 排序 --
+-- ASC 升序 ： 默认进行 升序 （故可不写）--
+-- DESC 降序 （写在排序参照的后面）
+-- 注意：这里 ORDER BY 关键字要写在 WHERE 关键字后面，先条件后排序，不然会报错。--
+
+-- EXAMPLE 1 -- 
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT *
+FROM `courses`
+ORDER BY `student_count`;
+
+-- EXAMPLE 2 -- 
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT `name`,`teacher_id`,`created_at`
+FROM `courses`
+WHERE `teacher_id` in (1,2,3)
+ORDER BY `teacher_id`,`created_at` DESC;
+- 若 第一个 排序参照相同 ，则按下一个排序 -
+
+-- PRATCISE 1 -- 
+
+-- SELECT DISTINCT 去除重复的值 --
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT DISTINCT age 
+FROM `teachers`
+ORDER BY `age`;
+
+-- PRATCISE 2 --
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX ORDER BY XXX --
+SELECT *
+FROM `teachers`
+WHERE `country` = 'CN'
+ORDER BY `age` DESC;
+
+

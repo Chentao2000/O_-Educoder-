@@ -1,0 +1,29 @@
+ --WHERE 可以接算法表达式  -- 
+ -- exapmple  --
+ 
+ -- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT *
+FROM `courses`
+WHERE `name` = 'System Design';
+-- 注意这里 判断是单引号 ： 'System Design' --
+
+-- practice 1 --
+
+-- Write your SQL Query here -- 
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT *
+FROM `courses`
+WHERE `student_count` > '1000';
+
+
+-- practice 2 --
+
+-- Write your SQL Query here -- 
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+
+SELECT *
+FROM `courses`
+WHERE `name` = 'Artificial Intelligence';
+
+
+

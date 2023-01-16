@@ -1,0 +1,17 @@
+-- EXAMPLE --
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+INSERT INTO `courses` (`name`, `student_count`, `created_at`, `teacher_id`)
+VALUES ('Flash Sale', 100, '2018-01-01', 5);
+
+-- ! 注意值是 用 ' X ' --
+
+
+-- PRACTICE --
+
+-- Write your SQL Query here --
+
+-- Write your SQL Query here --
+
+INSERT INTO `teachers`(`name`,`email`,`age`,`country`)
+VALUES('XiaoFu','XiaoFu@lintcode.com','20','CN')

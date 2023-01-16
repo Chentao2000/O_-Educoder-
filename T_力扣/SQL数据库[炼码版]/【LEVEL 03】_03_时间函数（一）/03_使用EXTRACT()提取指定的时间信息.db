@@ -1,0 +1,13 @@
+-- EXAMPEL 01 --
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT `name`, EXTRACT(HOUR FROM `created_at`) AS `created_hour`
+FROM `courses`;
+
+-- PRACTICE 01 --
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE --
+SELECT `name`,EXTRACT(HOUR FROM `created_at`) AS created_hour
+FROM `courses`;
+
+
+

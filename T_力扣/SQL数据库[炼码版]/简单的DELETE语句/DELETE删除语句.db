@@ -1,0 +1,10 @@
+-- EXAMPLE -- 
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+DELETE FROM `courses`
+WHERE `name` = 'Dynamic Programming';
+
+
+-- PRACTICE  --
+-- Write your SQL Query here --
+DELETE FROM `courses`
+WHERE `created_at` < '2020-1-1';

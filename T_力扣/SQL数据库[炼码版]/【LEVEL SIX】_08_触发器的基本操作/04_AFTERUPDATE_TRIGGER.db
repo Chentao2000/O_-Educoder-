@@ -1,0 +1,43 @@
+-- EXAMPLE 2577 --
+-- Write your SQL here --
+CREATE TRIGGER SEL 
+BEFORE UPDATE
+ON teachers
+FOR EACH ROW
+    INSERT INTO teachers_bkp(
+        name,
+        email,
+        age,
+        country
+    )
+    VALUES(
+        old.name,
+        old.email,
+        old.age,
+        old.country
+    );
+    
+ -- EXAMPLE 2578 --
+ 
+ -- Write your SQL here --
+create trigger members_check after update on members for each row
+begin
+    declare old_str varchar(255);
+    declare new_str varchar(255);
+    set old_str = '';
+    set new_str = '';
+    if new.name != old.name then set 
+        old_str = concat(old_str,'[name=',old.name,'] '),
+        new_str = concat(new_str,'[name=',new.name,'] ');
+        end if;
+    if new.email != old.email then set 
+        old_str = concat(old_str,'[email=',old.email,'] '),
+        new_str = concat(new_str,'[email=',new.email,'] ');
+        end if;
+    if new.birthDate != old.birthDate then set 
+        old_str = concat(old_str,'[birthDate=',old.birthDate,'] '),
+        new_str = concat(new_str,'[birthDate=',new.birthDate,'] ');
+        end if;
+    insert into reminders(memberId,message)
+    values(new.id,concat('Update {',old_str,'} To {',new_str,'}'));
+end

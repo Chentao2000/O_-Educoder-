@@ -1,0 +1,23 @@
+ --  LintCode 部门新进了一批科研人员，为了保护他们的人身安全，需要在 teachers 表中，将他们的信息删除。
+ --  请编写触发器，实现每次删除 teachers 表中的信息时，会在 teachers_bkp 中记录其信息。部分德高望重的科研人员渴望加入中国（CN）国籍
+ --  请编写触发器，实现该功能。
+
+ --  我们需要给 teachers 表添加两个新的触发器，当删除一条教师数据时：
+
+ --  触发器 bkp_teachers_delete：将删除的数据备份到结构相同的备份表 teachers_bkp 中；
+ --  触发器 before_teachers_delete：将 teachers_bkp 表中最年长的教师国籍改为 'CN'；
+ --  触发器 bkp_teachers_delete 需在触发器 before_teachers_delete 之前执行。
+
+
+create trigger bkp_teachers_delete before delete on teachers
+for each row
+    insert into teachers_bkp (name,email,age,country)
+    values (old.name,old.email,old.age,old.country);
+
+create trigger before_teachers_delete before delete on teachers
+for each row
+begin
+    set @max_age = (select max(age) from teachers_bkp);
+    update teachers_bkp set country = 'CN' where age >= @max_age;
+end;
+

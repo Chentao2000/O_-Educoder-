@@ -1,0 +1,50 @@
+-- EXAMPLE --
+
+-- 首先，创建一个名为 Salaries 的新表，存储员工的工资信息：
+DROP TABLE IF EXISTS Salaries;
+
+CREATE TABLE Salaries (
+    employeeNumber INT PRIMARY KEY,
+    validFrom DATE NOT NULL,
+    amount DEC(12 , 2 ) NOT NULL DEFAULT 0
+);
+
+-- 第二，在 Salaries 表中插入一些行：
+
+INSERT INTO salaries(employeeNumber,validFrom,amount)
+VALUES
+    (1002,'2000-01-01',50000),
+    (1056,'2000-01-01',60000),
+    (1076,'2000-01-01',70000);
+  
+  
+ -- 第三，创建一个存储被删除工资的表：
+ 
+DROP TABLE IF EXISTS SalaryArchives;    
+
+CREATE TABLE SalaryArchives (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    employeeNumber INT PRIMARY KEY,
+    validFrom DATE NOT NULL,
+    amount DEC(12 , 2 ) NOT NULL DEFAULT 0,
+    deletedAt TIMESTAMP DEFAULT NOW()
+);
+-- 创建 BEFORE DELETE 触发器实例
+
+-- Write your SQL here --
+
+CREATE TRIGGER MY_TRIGGER
+BEFORE DELETE
+ON members FOR EACH ROW
+BEGIN
+    INSERT INTO reminders(
+        memberId,
+        message
+    ) 
+    VALUE(
+        OLD.id,
+        CONCAT('Delete members {[id=',OLD.id,'] [name=',OLD.name,'] [email=',OLD.email,'] [birthDate=',OLD.birthDate,']}')
+    )   ;
+
+END
+

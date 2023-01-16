@@ -1,0 +1,25 @@
+-- EXMAPLE 01  --
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+DELETE FROM `courses` 
+WHERE `teacher_id` IN ( 
+                SELECT `id` 
+                FROM `teachers` 
+                WHERE `age` < 21 
+        );
+        
+        
+-- PRACTICE  --
+
+DELETE FROM `teachers`  --删除教师表中相关信息
+WHERE `id` IN(     --给出相应条件
+	SELECT `teacher_id`   -- 查询创建时间在2020之前
+	FROM `courses`
+	WHERE `created_at` < '2020-01-01'
+);
+
+
+
+
+
+

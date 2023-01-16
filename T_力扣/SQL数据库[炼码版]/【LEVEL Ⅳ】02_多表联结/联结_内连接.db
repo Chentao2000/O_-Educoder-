@@ -1,0 +1,63 @@
+    -- FROM `连接的表B`
+    -- INNER JOIN `要连接的表A` ON `连接的表B`.`连接的列B` =  `连接的表A`.`连接的列A`-- !!
+
+
+-- 创建联结 --
+
+`table1`.`common_field` = `table2`.`common_field`
+
+-- 教师表的主键 id 为设置的关联条件为 -- 
+
+`teachers`.`id` = `courses`.`teacher_id` 
+
+-- ************* JOIN 连接子句 *********** --
+
+-- 基本语法的两种写法 --- 
+
+SELECT `table1`.`column1`, `table2`.`column2`...
+FROM `table1`
+INNER JOIN `table2`
+ON `table1`.`common_field` = `table2`.`common_field`;
+
+SELECT `table1`.`column1`, `table2`.`column2`...
+FROM `table1`
+JOIN `table2`
+ON `table1`.`common_field` = `table2`.`common_field`;
+
+
+-- 注：INNER JOIN 中 INNER 可以省略不写 --
+
+-- SO 核心 语法 ： --
+FROM table1
+INNER JOIN table2
+ON table1.common_field = table2.common_field
+
+-- *********** EXAMPLE 01 *********** --
+-- courses c 等同于 courses AS c ，给courses 表取别名为 c  (即 省掉了 AS)--
+-- INNER JOIN 也可写作 JOIN --
+
+SELECT `c`.`id`, `c`.`name` AS `course_name`, `t`.`name` AS `teacher_name`
+FROM `courses` `c`
+    INNER JOIN `teachers` `t` ON `c`.`teacher_id` = `t`.`id`;
+    -- 把 id 连在了一起 -- 
+    
+    -- FROM `连接的表B`
+    -- INNER JOIN `要连接的表A` ON `连接的表B`.`连接的列B` =  `连接的表A`.`连接的列A`-- !!
+
+    
+    
+    
+-- **************** PRACTICE ************* --
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT `my_c`.`id`,`my_c`.`name`AS `course_name` ,`my_t`.`name` AS `teacher_name`
+FROM `courses` `my_c`
+    INNER JOIN `teachers` `my_t` ON `my_c`.`teacher_id` = `my_t`.`id`
+WHERE `my_t`.`name` = 'Eastern Heretic';
+    
+    
+    
+    
+
+

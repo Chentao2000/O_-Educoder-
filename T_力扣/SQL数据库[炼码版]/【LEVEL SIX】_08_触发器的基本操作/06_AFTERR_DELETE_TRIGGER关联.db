@@ -1,0 +1,5 @@
+-- Write your SQL here --
+create trigger check_teacher after delete on teachers for each row
+begin 
+        update courses set teacher_id = 0 where teacher_id = old.id;
+end

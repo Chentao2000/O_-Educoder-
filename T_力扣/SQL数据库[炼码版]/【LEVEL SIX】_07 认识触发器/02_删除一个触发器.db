@@ -1,0 +1,3 @@
+-- Write your SQL here --
+-- Write your SQL here --
+drop trigger before_teachers_update;

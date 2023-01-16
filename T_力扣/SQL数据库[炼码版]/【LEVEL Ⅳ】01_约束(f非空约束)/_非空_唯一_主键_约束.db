@@ -1,0 +1,144 @@
+-- EXAMPLE 01 --
+
+-- *****************  非空约束 *****************************  --
+
+-- 下面的 SQL 强制 ID 列、 LastName 列以及 FirstName 列不接受 NULL 值： --
+CREATE TABLE `Persons` (
+    `ID` int NOT NULL,
+    `LastName` varchar(255) NOT NULL,
+    `FirstName` varchar(255) NOT NULL,
+    `Age` int
+);
+
+-- EXAMPLE 02 --
+
+--  在一个已创建的表的 Age 字段中添加 NOT NULL 约束如下所示： --
+ALTER TABLE `Persons`
+MODIFY `Age` int NOT NULL;
+
+
+-- EXAMPLE 03 --
+
+-- 在一个已创建的表的 Age 字段中删除 NOT NULL 约束如下所示： --
+
+ALTER TABLE `Persons`
+MODIFY `Age` int NULL;
+
+-- *****************  唯一约束 *****************************  --
+-- 在有些情况下，我们不希望一个表中出现重复的记录，这时候我们需要用到 UNIQUE 约束来解决这些问题 -
+
+-- EXAMPLE 04  --
+
+-- 下面的 SQL 在 Persons 表创建时在 P_Id 列上创建 UNIQUE 约束：--
+
+CREATE TABLE `Persons`
+(
+`P_Id` int NOT NULL,
+`LastName` varchar(255) NOT NULL,
+`FirstName` varchar(255),
+`Address` varchar(255),
+`City` varchar(255),
+UNIQUE (`P_Id`)
+)
+
+-- EXAMPLE 05  --
+
+-- 命名 UNIQUE 约束，并定义多个列的 UNIQUE 约束: --
+
+CREATE TABLE `Persons`
+(
+`P_Id` int NOT NULL,
+`LastName` varchar(255) NOT NULL,
+`FirstName` varchar(255),
+`Address` varchar(255),
+`City` varchar(255),
+CONSTRAINT uc_PersonID UNIQUE (`P_Id`,`LastName`)
+)
+
+-- EXAMPLE 06  --
+
+-- 当表已被创建时，在 P_Id 列创建 UNIQUE 约束: --
+ 
+ALTER TABLE `Persons`
+ADD UNIQUE（`P_Id`）
+
+-- EXAMPLE 07  --
+
+--如需撤销 UNIQUE 约束 :  --
+
+ALTER TABLE `Persons`
+DROP INDEX uc_PersonID
+
+-- *****************  主键约束 *****************************  --
+
+--PRIMARY KEY 约束唯一标识数据库表中的每条记录 ，简单的说，PRIMARY KEY = UNIQUE + NOT NULL  --
+
+-- EXAMPLE 08  --
+
+-- 我们可以通过下面的实例来感受一下如何添加 PRIMARY KEY 约束。 --
+CREATE TABLE `Persons`
+(
+    `P_Id` int NOT NULL,
+    `LastName` varchar(255) NOT NULL,
+    `FirstName` varchar(255),
+    `Address` varchar(255),
+    `City` varchar(255),
+    PRIMARY KEY (`P_Id`)
+);
+
+ -- EXAMPLE 09  --
+ 
+ --如需命名并定义多个列的 PRIMARY KEY 约束，请使用下面的 SQL 语法：--
+ 
+ CREATE TABLE `Persons`
+(
+    `P_Id` int NOT NULL,
+    `LastName` varchar(255) NOT NULL,
+    `FirstName` varchar(255),
+    `Address` varchar(255),
+    `City` varchar(255),
+    CONSTRAINT pk_PersonID PRIMARY KEY (`P_Id`,`LastName`)
+)
+
+-- EXAMPLE 10 --
+
+-- 当表已被创建时，如需在 P_Id 列创建 PRIMARY KEY 约束： --
+
+ALTER TABLE `Persons`
+ADD PRIMARY KEY (`P_Id`)
+
+
+-- EXAMPLE 11 --
+-- 如需命名并定义多个列的 PRIMARY KEY 约束，可以使用下面的 SQL 语法： --
+
+ALTER TABLE `Persons`
+ADD CONSTRAINT pk_PersonID PRIMARY KEY (`P_Id`,`LastName`)
+
+-- EXAMPLE 12 --
+
+-- 如需撤销 PRIMARY KEY 约束，我们可以通过将上述 ALTER TABLE 和 DROP 实现： --
+
+ALTER TABLE `Persons`
+DROP PRIMARY KEY
+
+-- *****************  练习 *****************************  --
+
+-- PRACTICE 01 --
+
+-- Write your SQL Query here --
+
+ALTER TABLE `courses`
+ADD PRIMARY KEY (`id`)
+
+-- PRACTICE 02 --
+
+-- Write your SQL Query here -- 
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+
+ALTER TABLE `courses`
+DROP PRIMARY KEY
+
+
+
+
+

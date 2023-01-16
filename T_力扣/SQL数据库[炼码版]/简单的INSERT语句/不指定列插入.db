@@ -1,0 +1,12 @@
+-- EXAMPLE --
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+INSERT INTO courses
+VALUES (13, "Python", 400, "2021-05-23", 3);
+
+-- PRACTICE --
+
+-- Write your SQL Query here --
+
+INSERT INTO courses
+VALUES (14,"SQL",200,"2021-02-25",1);
+

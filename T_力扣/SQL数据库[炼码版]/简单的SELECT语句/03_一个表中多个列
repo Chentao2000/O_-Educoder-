@@ -1,0 +1,4 @@
+-- Write your SQL Query here --
+-- example: SELECT 列1 ,列2 FROM XX_TABLE --
+-- 查询一个表中多个列--
+SELECT `name` ,`student_count` FROM `courses`

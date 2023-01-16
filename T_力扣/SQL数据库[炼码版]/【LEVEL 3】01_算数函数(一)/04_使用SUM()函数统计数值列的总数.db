@@ -1,0 +1,13 @@
+-- example 1 --
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT SUM(`student_count`) AS `all_student_count` 
+FROM `courses`;
+
+-- practice 1 --
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT SUM(student_count) AS select_student_sum
+FROM courses
+WHERE teacher_id = 3;

@@ -1,0 +1,46 @@
+-- concat('Hi ',new.name,', please update your date of birth.') --
+-- EXAMPLE 01 --
+
+-- Write your SQL here --
+-- 请编写 SQL 语句，为教师表 teachers 设计一个触发器，将 teachers 中新增的数据复制到结构相同的备份表 teachers_bkp 中 --
+-- Write your SQL here --
+create trigger t
+after insert
+ON teachers
+for each row
+insert into reminders (
+    name,
+    email,
+    age,
+    country
+    )
+    values(
+        new.name,
+        new.email,
+        new.age,
+        new.country
+    );
+
+-- practice 01 --
+-- 请编写 SQL 语句，为名为 members 的表创建了一个 INSERT 触发器， --
+-- 要求实现如果会员的出生日期为 NULL，则将提醒信息 'Hi (会员名称), please update your date of birth.' --
+-- 插入到 reminders 表中 --
+
+
+CREATE trigger after_members_insert
+after INSERT 
+    ON members for each row
+    BEGIN
+        IF new.birthDate is NULL
+        THEN 
+            INSERT INTO reminders(
+                memberId,
+                message
+            )
+            VALUE(
+                new.id,
+               concat('Hi ',new.name,', please update your date of birth.')
+            );
+        END IF;         
+
+    END

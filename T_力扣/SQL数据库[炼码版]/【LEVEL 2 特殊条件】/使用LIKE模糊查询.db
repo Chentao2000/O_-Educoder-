@@ -1,0 +1,26 @@
+-- 前面我们学习 BETWEEN AND 和比较运算符时，和文本操作类似，比如前面课程名称首字母的范围 --
+-- 这种方案虽然可行但是不稳定，不是直接对文本的操作。在这里我们学习使用 LIKE 更准确规范得解决文本比较问题。 --
+ -- ***************************************************************************************************** -- 
+-- 通配符	描述 -- 
+-- %	替代 0 个或多个字符 -- 
+-- _	替代一个字符 -- 
+-- [charlist]	字符列中的任何单一字符 -- 
+-- 或 [!charlist]	不在字符列中的任何单一字符 -- 
+
+-- EXAMPLE --
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT * 
+FROM `courses` 
+WHERE `name` LIKE 'D%'
+
+-- EXAMPLE --
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+Select name , email
+From teachers
+--Where email Like '%@qq.com'
+--Where right(email,7) = '@qq.com'
+Where email Regexp '@qq.com$'
+

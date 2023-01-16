@@ -1,0 +1,21 @@
+object ForDemo {
+  def main(args: Array[String]): Unit = {
+    // 请在 Begin-End 间编写代码
+    /********** Begin **********/
+    var hunreds:Int = 0
+    var ten:Int = 0
+    var digits:Int = 0
+    var num:Int =0 
+    // 使用 for 循环输出所有的水仙花数
+      for(i <- 100 to 999){   
+       hunreds = i / 100
+       ten =(i - hunreds*100)/10
+       digits= i - hunreds*100 - ten*10
+       num= hunreds*hunreds*hunreds + ten*ten*ten +digits*digits*digits
+       if(num==i){
+        println(i+"是一个水仙花数")
+       }
+    }
+    /********** End **********/
+  }
+}

@@ -1,0 +1,60 @@
+-- 插入的时候 ，除了 @ 一切都要 '' -- 
+-- 如果要插入一个空值 NULL ,不插入就好了 --
+
+
+--- EXAMPLE 01 ---
+-- 1. start a new transaction
+START TRANSACTION;
+
+-- 2. Get the latest order number
+SELECT 
+    @orderNumber:=MAX(orderNUmber)+1
+FROM
+    orders;
+
+-- 3. insert a new order for customer 145
+INSERT INTO orders(orderNumber,
+                   orderDate,
+                   requiredDate,
+                   shippedDate,
+                   status,
+                   customerNumber)
+VALUES(@orderNumber,
+       '2005-05-31',
+       '2005-06-10',
+       '2005-06-11',
+       'In Process',
+        145);
+        
+-- 4. Insert order line items
+INSERT INTO orderdetails(orderNumber,
+                         productCode,
+                         quantityOrdered,
+                         priceEach,
+                         orderLineNumber)
+VALUES(@orderNumber,'S18_1749', 30, '136', 1),
+      (@orderNumber,'S18_2248', 50, '55.09', 2); 
+      
+-- 5. commit changes    
+COMMIT;
+
+
+--- excel --
+
+-- 不要删除预置代码 --
+-- 开启一个事务 -- 
+SELECT @id:=MAX(id)+1
+FROM `teachers`;
+INSERT INTO `teachers`(
+    id,
+    name,
+    age,
+    country
+)
+VALUES(
+    @id,
+    'Kansas',
+    '41',
+    'UK'
+);
+COMMIT;

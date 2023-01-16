@@ -1,0 +1,20 @@
+-- EXAMPLE --
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT *
+FROM teachers
+WHERE NOT (age > 20 AND country = 'CN');
+
+-- PRACTICE 1 --
+
+-- 注意逻辑 关系 , NOT 里面 连接符也要取反 如 NOT(AND) = OR -- 
+-- Write your SQL Query here --
+
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT *
+FROM `courses`
+WHERE NOT (`teacher_id` = 3 OR `student_count` <= 800)
+
+
+

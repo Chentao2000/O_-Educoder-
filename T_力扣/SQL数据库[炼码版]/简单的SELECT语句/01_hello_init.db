@@ -1,0 +1,3 @@
+-- Write your SQL Query here --
+--2045 · 输出 Hello LintCode --
+SELECT "Hello LintCode!"

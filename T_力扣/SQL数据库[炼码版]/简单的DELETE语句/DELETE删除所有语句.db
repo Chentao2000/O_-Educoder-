@@ -1,0 +1,4 @@
+-- Write your SQL Query here --
+DELETE FROM `courses`
+
+-- 直接这样就好了 --  

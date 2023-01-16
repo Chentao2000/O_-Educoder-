@@ -1,0 +1,21 @@
+import scala.io.StdIn
+
+object ForDemo {
+  def main(args: Array[String]): Unit = {
+    
+    val sites = Map(
+      "educoder" -> "www.educoder.net",
+      "baidu" -> "http://www.baidu.com",
+      "taobao" -> "http://www.taobao.com"
+    )
+    //使用 foreach 遍历 Map 中的 keys 和 values  
+    sites.keys.foreach{
+      i => 
+      print("Key = " + i)
+      println("value = " + sites(i) )
+    }
+
+
+
+}
+}

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cp -r  Spark/SparkRDD/target/project.jar /root
+cd /opt/spark/dist/bin
+#********** Begin **********#
+
+./spark-submit --class Student /root/project.jar
+
+#********** End **********#

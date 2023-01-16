@@ -1,0 +1,43 @@
+-- EXAMPLE 01 --
+
+-- 使用版本号使用乐观锁 --
+
+-- 1.查询出商品信息 --
+select status,version from t_goods where id=#{id};
+-- 2.根据商品信息生成订单 --
+-- 3.修改商品status为2 --
+update t_goods
+set status=2,version=version+1
+where id=#{id} and version=#{version};
+
+--- wangyou liezi --
+
+-- Write your SQL here --
+UPDATE teachers
+SET country = 'CN' ,version = version+1
+WHERE name = 'Western Venom';
+
+
+
+-- EXAMPLE 02 --
+-- 要使用悲观锁，我们必须关闭 MySQL 数据库的自动提交属性，-- 
+-- 因为 MySQL 默认使用 auto commit 模式，也就是说，当你执行一个更新操作后，MySQL 会立刻将结果进行提交。 --
+set autocommit=0;
+-- 0. 开始事务（三者选一就可以） --
+begin;/begin work;/start transaction;
+-- 1. 查询出商品信息 --
+select status from t_goods where id=1 for update; 
+-- 2. 根据商品信息生成订单 --
+insert into t_orders (id,goods_id) values (null,1); 
+-- 3. 修改商品 status 为 2 -- 
+update t_goods set status=2; 
+-- 4. 提交事务 --
+commit;/commit work;
+
+
+-- PRACTICE 01 --
+
+UPDATE teachers
+SET country = 'CN' ,version = version+1
+WHERE name = 'Western Venom';
+-- 乐观锁就是 版本号要加1 --

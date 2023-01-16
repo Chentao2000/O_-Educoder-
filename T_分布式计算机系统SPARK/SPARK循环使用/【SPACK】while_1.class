@@ -1,0 +1,20 @@
+import scala.io.StdIn
+object WhileDemo {  
+  def main(args: Array[String]): Unit = {  
+    // 请在 Begin-End 间编写代码          
+    /********** Begin **********/  
+    // 计算给定的 n 个整数中所有的非负数之和  
+    var i: Int =0 // 定义循环变量i  
+    var sum: Int =0 // 定义求和变量 sum  
+    val n=StdIn.readInt() // 从控制台获取变量 n  
+    while(i<n){ // 判断输入值是否大于 0，对大于 0 的值累加  
+      val num=StdIn.readInt()  
+      if(num>0) {  
+        sum=num+sum  
+      }  
+      i=i+1  
+    }      
+    print(sum) // 输出累加值  
+    /********** End **********/
+  }
+}

@@ -1,0 +1,7 @@
+-- 查表锁 --
+SHOW STATUS LIKE 'table%';
+-- 主要看这个 Table_locks_waited  值越高说明越严重 --
+
+-- 查行锁 --
+SHOW STATUS LIKE 'innodb_row_lock%';
+

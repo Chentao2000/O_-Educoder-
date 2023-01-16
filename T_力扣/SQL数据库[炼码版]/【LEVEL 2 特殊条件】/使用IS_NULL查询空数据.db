@@ -1,0 +1,14 @@
+-- EXAMPLE  01 -- 
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT *
+FROM `teachers`
+WHERE `email` IS NULL;
+
+
+-- PRACTICE  01 -- 
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT *
+FROM `teachers`
+WHERE (`country` = 'CN' OR `country`  ='JP') AND NOT(`email`  IS NULL);

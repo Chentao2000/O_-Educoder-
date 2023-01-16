@@ -1,0 +1,23 @@
+-- EXAMPLE -- 
+-- WHERE (AA ,BB) IN (SELECT AA , BB .....) 还可以用在两个列 之间 -- 
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT `name`, `age`, `country` 
+FROM `teachers` 
+WHERE (`country`, `age`) IN ( 
+        SELECT `country`, MAX(`age`) 
+        FROM `teachers` 
+        GROUP BY `country` 
+);
+-- PRACTICE --
+-- WHERE ( AA , BB)IN  SELECT AA , AVG(BB)  BROUP BY AA (以AA生成了一个表格)--
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT `name` ,`student_count` 
+FROM courses
+WHERE (`teacher_id` ,`student_count`) in(
+    SELECT `teacher_id` ,MAX(student_count)
+    FROM courses
+    GROUP BY `teacher_id`
+);
+
+-- 

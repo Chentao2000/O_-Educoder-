@@ -1,0 +1,37 @@
+--- 创建一个调用存储过程的触发器
+-- EXAMPLE --
+
+-- 在这个存储过程中：
+
+-- 首先，获取账户的当前余额。
+-- 第二，设置可提取金额。账户的最低余额必须是 25。
+-- 第三，如果提款金额大于可提款金额，则引发错误。
+
+DELIMITER $$
+
+CREATE PROCEDURE CheckWithdrawal(
+    fromAccountId INT,
+    withdrawAmount DEC(10,2)
+)
+BEGIN
+    DECLARE balance DEC(10,2);
+    DECLARE withdrawableAmount DEC(10,2);
+    DECLARE message VARCHAR(255);
+
+    -- get current balance of the account
+    SELECT amount 
+    INTO balance
+    FROM accounts
+    WHERE accountId = fromAccountId;
+    
+    -- Set minimum balance
+    SET withdrawableAmount = balance - 25;
+
+    IF withdrawAmount > withdrawableAmount THEN
+        SET message = CONCAT('Insufficient amount, the maximum withdrawable is ', withdrawableAmount);
+        SIGNAL SQLSTATE '45000' 
+            SET MESSAGE_TEXT = message;
+    END IF;
+END$$
+
+DELIMITER ;

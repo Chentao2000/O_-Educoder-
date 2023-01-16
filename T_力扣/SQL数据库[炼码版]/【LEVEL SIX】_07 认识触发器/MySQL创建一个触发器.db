@@ -1,0 +1,51 @@
+-- EXAMPLE 01 --
+
+-- CREATE TRIGGER 语句创建一个新的触发器。 --
+
+CREATE TRIGGER trigger_name
+{BEFORE | AFTER} {INSERT | UPDATE| DELETE }
+ON table_name FOR EACH ROW
+trigger_body;
+
+
+-- 让我们开始在 MySQL 中创建一个触发器来记录 employees 表的变化。 --
+
+-- 首先，创建一个名为 employees_audit 的新表，以保持对 employees 表的修改。 --
+
+CREATE TABLE employees_audit (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    employeeNumber INT NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    changedat DATETIME DEFAULT NULL,
+    action VARCHAR(50) DEFAULT NULL
+);
+
+-- 接下来，创建一个 BEFORE UPDATE 触发器，在对 employees 表进行修改之前调用。 --
+CREATE TRIGGER before_employee_update 
+    BEFORE UPDATE ON employees
+    FOR EACH ROW 
+ INSERT INTO employees_audit
+ SET action = 'update',
+     employeeNumber = OLD.employeeNumber,
+     lastname = OLD.lastname,
+     changedat = NOW();
+     
+--      之后，在 employees 表中更新一条记录： ---
+     UPDATE employees 
+SET 
+    lastName = 'Phan'
+WHERE
+    employeeNumber = 1056;
+    
+ -- 最后，查询 employees_audit 表以检查触发器是否被 UPDATE 语句触发： --
+
+SELECT * FROM employees_audit;
+
+ -- PRACTICE --
+ 
+ 
+    
+    
+    
+    
+    

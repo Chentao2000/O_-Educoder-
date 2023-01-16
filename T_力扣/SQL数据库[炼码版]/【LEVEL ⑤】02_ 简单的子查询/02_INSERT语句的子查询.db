@@ -1,0 +1,16 @@
+-- EXAMPEL 01 --
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+INSERT INTO `teachers_bkp` 
+SELECT * 
+FROM `teachers`;
+
+
+--- PRACTICE 01 --
+
+-- Write your SQL INSERT here --
+
+INSERT INTO `teachers_bkp`
+SELECT *
+FROM `teachers`
+WHERE age > 20 ;

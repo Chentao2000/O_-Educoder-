@@ -1,0 +1,32 @@
+-- EXAMPLE 01 -- 
+
+-- Write your SQL here --
+--编辑触发器 --
+CREATE TRIGGER before_recording_insert
+--指定调用触发器的时间。
+BEFORE INSERT
+--ON 关键字后指定触发器所关联的表的名称。
+ON recording FOR EACH ROW
+--触发器主体begin和end两者缺一不可
+BEGIN 
+-- id (student_id) 和 公司 id (company_id)是否在两个表中
+
+IF new.student_id not in(SELECT `id` FROM `students`) THEN SET new.student_id = '0';
+END IF;
+IF new.company_id not in(SELECT `id` FROM `companies`) THEN SET new.company_id = '0';
+END IF;
+END;
+
+
+-- PRACTICE 01 --
+
+
+-- Write your SQL here --
+create trigger before_courses_insert before insert on courses for each row
+begin
+     if new.teacher_id not in(select id from teachers)
+     then set new.teacher_id=0, new.created_at=null;
+     end if;
+end;
+
+

@@ -1,0 +1,38 @@
+import scala.io.StdIn
+
+object WhileDemo {
+  def main(args: Array[String]): Unit = {
+    // 定义变量 positive，并赋初值0,用于统计正数个数
+    var positive: Int =0
+    // 定义变量 negative，并赋初值0,用于统计负数个数
+    var negative: Int =0
+    // 定义变量 i,用于统计循环次数
+    var i: Int =0;
+    // 读取控制台输入的整数值
+    var n: Int =StdIn.readInt()
+      
+    // 在do后的花括号中编写循环语句，统计正数个数和负数个数
+    do{
+	// 请在 Begin-End 间编写代码
+    /********** Begin **********/
+    var num: Int =StdIn.readInt()
+    if(num>0){positive+=1}
+    else{negative+=1}
+    i+=1  
+    
+    }
+    
+    // 在while后判断终止条件
+    while (i<n)
+    
+        
+	// 输出结果
+          println("正数个数：" + positive) 
+          println("负数个数：" + negative)
+    
+ 
+    /********** End **********/
+
+    }
+}
+

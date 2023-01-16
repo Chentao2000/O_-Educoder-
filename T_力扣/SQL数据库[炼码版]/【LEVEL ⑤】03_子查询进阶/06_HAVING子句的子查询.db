@@ -1,0 +1,29 @@
+
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT `name`
+FROM `teachers`
+WHERE `id` IN (
+	SELECT `teacher_id`
+	FROM `courses`
+	GROUP BY `teacher_id`
+	HAVING AVG(`student_count`) > (
+		SELECT AVG(`student_count`)
+		FROM `courses`
+	)
+);
+
+-- EXAMPLE 01 --
+-- 1.统计不同国籍教师所开课程的学生总数 --
+-- 2——1 以U 字母开头的老师 --
+-- 2.所有教师的学生总数在 2000 到 5000 之间（包括 2000 和 5000）的教师国籍及学生总数 --
+-- 3. 按照学生总数降序排列，如果学生总数相同，则按照教师国籍升序排列--
+-- 4. 没有任课的老师 学生计数为 0 --
+
+SELECT `t`.`country`,IFNULL(SUM(c.student_count),0) as student_count
+FROM courses c RIGHT JOIN teachers t ON c.teacher_id = t.id
+WHERE t.country like 'U%'
+-- 只有 group BY HANVING ORDER 都不需要引用两个表的具体代称 --
+group by country
+HAVING  student_count >= 2000  AND student_count <= 5000
+ORDER BY `student_count` DESC ,country ;

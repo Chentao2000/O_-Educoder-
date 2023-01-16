@@ -1,0 +1,28 @@
+-- EXAMPLE 01 --
+-- 使用 LIMIT 限制输出行数 --
+-- LIMIT 子句用于 SELECT 中，对输出结果集的行数进行约束，LIMIT 接收2个参数 offset 和 count，两个参数都是整型数字 --
+
+-- offset ：是返回集的初始标注，起始点是0，不是1哦 --
+-- count ：制定返回的数量 --
+
+
+
+--  EXAMPLE 01 --
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT *
+FROM `courses`
+ORDER BY `student_count`
+LIMIT 3;
+
+-- PRACTICE 01 --
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT * 
+FROM `teachers`
+WHERE `country` = 'CN'
+ORDER BY `age` DESC 
+LIMIT 1;
+
+
+

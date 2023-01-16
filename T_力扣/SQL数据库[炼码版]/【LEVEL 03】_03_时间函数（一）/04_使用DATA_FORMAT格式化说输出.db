@@ -1,0 +1,18 @@
+-- EXAMPLE --
+
+-- 请直接点击右下角“运行测试数据”按钮，查看 SQL 语句运行结果 --
+SELECT DATE_FORMAT(`created_at`, '%Y %m') AS `DATE_FORMAT`
+FROM `courses`;
+
+--  %m 表示月份，%d 表示日期，%Y 表示年份，%w 表示星期。 --
+--  %H:%i:%s  小时分钟 秒--
+
+-- PRACTICE -- 
+
+
+请编写 SQL 语句，查询 courses 表，查询课程创建时间，按照 ’年-月-日 时:分:秒’ 的格式返回结果，返回列名显示为 DATE_FORMAT。
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE --
+select date_format(created_at,'%Y-%m-%d %H:%i:%s') as DATE_FORMAT
+from courses

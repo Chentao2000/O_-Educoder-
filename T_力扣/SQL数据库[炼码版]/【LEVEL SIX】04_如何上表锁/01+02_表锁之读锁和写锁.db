@@ -1,0 +1,71 @@
+-- EXAMPLE 01 --
+
+-- 由于对 teachers 表加了读锁，所以直接使用 UPDATE 语句更新会报错，因为读锁上不能进行写操作，需要先解锁，再进行 UPDATE 操作--
+-- 对 teachers 表上读锁，不要删除该代码 --
+LOCK TABLES teachers READ;
+
+-- Write your SQL Query here --
+
+-- 解锁 --
+UNLOCK TABLES;
+
+-- 更新邮箱 --
+UPDATE teachers 
+SET email = 'linghu.chong@ninechapter.com'
+WHERE name = 'Linghu Chong';
+
+-- EXAMPLE 02 --
+
+-- 在上面的 SQL 语句中，由于对 courses 表加了写锁，所以只能对持有写锁的表进行读或写操作， --
+-- 如果想对其他的表进行操作，需要先解锁。 --
+
+-- 对 courses 表上写锁 --
+LOCK TABLES courses WRITE;
+
+-- 解锁 --
+UNLOCK TABLES;
+
+-- 查询 teachers 表中所有信息 --
+SELECT * 
+FROM teachers;
+
+-- example 01 --
+
+-- 对 teachers 表上读锁，不要删除该代码 --
+LOCK TABLES teachers READ;
+
+-- Write your SQL Query here --
+
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+UNLOCK TABLES;
+SELECT @id:=MAX(id)+1 FROM teachers;
+INSERT INTO teachers(
+        id,
+        name,
+        email,
+        age,
+        country
+)
+VALUE(
+    @id,
+    'Feng Qingyang',
+    'feng.qingyang@163.com',
+    '37',
+    'CN'
+);
+
+
+
+
+-- example 02 --
+
+-- 对 courses 表上写锁，不要删除该代码 --
+LOCK TABLES courses WRITE;
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+UNLOCK TABLES;
+SELECT *
+FROM courses;
+
+

@@ -1,0 +1,47 @@
+        -- 一种牛逼的写法 ，WHERE A IN SELECT A FROM ABC GROUP BY A HAVING ..... xx ..... --
+-- HAVING 子句对于 GROUP BY 子句设置条件的方式其实与 WHERE 子句与 SELECT 的方式类似，--
+-- 语法也相近，但 WHERE 子句搜索条件是在分组操作之前，而 HAVING 则是在之后。 -- 
+
+SELECT `T`.`name` AS `name`, IFNULL(SUM(`C`.`student_count`),0) AS `student_count`
+FROM `courses` `C` RIGHT JOIN `teachers` `T`
+ON `C`.`teacher_id` = `T`.`id`
+GROUP BY `T`.`id`
+HAVING `student_count` < 3000
+ORDER BY `student_count`, `name`;
+
+
+
+
+--- PRACTICT 01 --
+
+
+-- 高级写法 01 --
+ SELECT * FROM teachers 
+     WHERE country IN
+		 (SELECT country FROM teachers GROUP BY country
+           HAVING AVG(age) > (SELECT AVG(age) FROM teachers))
+           
+ -- 高级写法 02 --
+ 
+ SELECT * FROM teachers 
+     WHERE country IN
+		 (SELECT country FROM teachers GROUP BY country
+           HAVING AVG(age) > (SELECT AVG(age) FROM teachers))
+           
+           -- 一种牛逼的写法 ，WHERE A IN SELECT A FROM ABC GROUP BY A HAVING ..... xx ..... --
+           
+           SELECT * FROM teachers 
+    WHERE country IN (
+        SELECT country  FROM teachers  GROUP BY country
+        HAVING AVG(age) > (
+            SELECT AVG(age) FROM teachers
+         )
+    )
+    -- 嵌套超级多 ！！！ --
+
+
+
+
+
+
+

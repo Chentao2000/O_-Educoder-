@@ -1,0 +1,22 @@
+-- EXAMPLE 01 --
+
+SELECT `name`
+FROM `courses`
+WHERE `teacher_id` IN (
+	SELECT `id`
+	FROM `teachers`
+	WHERE `country` = 'USA'
+);
+
+
+-- PRACTICE 01 --
+
+-- Write your SQL Query here --
+-- example: SELECT * FROM XX_TABLE WHERE XXX --
+SELECT `name`
+FROM courses
+WHERE teacher_id IN (
+    SELECT `id`
+    FROM `teachers`
+    WHERE `age` > 20
+);
